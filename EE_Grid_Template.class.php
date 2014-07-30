@@ -5,16 +5,18 @@
  * Class  EE_Grid_Template
  *
  * @package			Event Espresso
- * @subpackage		espresso-new-addon
+ * @subpackage		espresso-grid-template
  * @author			    Brent Christensen
  * @ version		 	$VID:$
  *
  * ------------------------------------------------------------------------
  */
 // define the plugin directory path and URL
-		define( 'EE_GRID_TEMPLATE_PATH', plugin_dir_path( __FILE__ ));
-		define( 'EE_GRID_TEMPLATE_URL', plugin_dir_url( __FILE__ ));
-		define( 'EE_GRID_TEMPLATE_TEMPLATES', EE_GRID_TEMPLATE_PATH . DS . 'templates' );
+define( 'EE_GRID_TEMPLATE_BASENAME', plugin_basename( EE_GRID_TEMPLATE_PLUGIN_FILE )); 
+define( 'EE_GRID_TEMPLATE_PATH', plugin_dir_path( __FILE__ ));
+define( 'EE_GRID_TEMPLATE_URL', plugin_dir_url( __FILE__ ));
+define( 'EE_GRID_TEMPLATE_TEMPLATES', EE_GRID_TEMPLATE_PATH . DS . 'templates' );
+
 Class  EE_Grid_Template extends EE_Addon {
 
 	/**
@@ -32,14 +34,14 @@ Class  EE_Grid_Template extends EE_Addon {
 			'Grid_Template',
 			array(
 				'version' 					=> EE_GRID_TEMPLATE_VERSION,
-				'min_core_version' => '4.3.0',
+				'min_core_version' 			=> '4.3.0',
 				'base_path' 				=> EE_GRID_TEMPLATE_PATH,
-				'main_file_path' => EE_GRID_TEMPLATE_PATH . 'espresso-calendar-table-template.php',
-				'autoloader_paths' => array(
+				'main_file_path' 			=> EE_GRID_TEMPLATE_PLUGIN_FILE . 'espresso-grid-template.php',
+				'autoloader_paths' 			=> array(
 					'EE_Grid_Template' 	=> EE_GRID_TEMPLATE_PATH . 'EE_Grid_Template.class.php',
 				),
 				'shortcode_paths' 	=> array( EE_GRID_TEMPLATE_PATH . 'EES_Espresso_Grid_Template.shortcode.php' ),
-				//The below is for if plugin update engine is being used for auto-updates. not needed if PUE is not being used.
+				// if plugin update engine is being used for auto-updates. not needed if PUE is not being used.
 				'pue_options'			=> array(
 					'pue_plugin_slug' => 'espresso_grid_template',
 					'plugin_basename' => EE_GRID_TEMPLATE_PLUGIN_FILE,
@@ -49,6 +51,8 @@ Class  EE_Grid_Template extends EE_Addon {
 			)
 		);
 	}
+
+
 
 	/**
 	 * 	additional_admin_hooks
@@ -65,7 +69,6 @@ Class  EE_Grid_Template extends EE_Addon {
 
 
 
-
 	/**
 	 * plugin_actions
 	 *
@@ -75,7 +78,7 @@ Class  EE_Grid_Template extends EE_Addon {
 	 * @return array
 	 */
 	public function plugin_actions( $links, $file ) {
-		if ( $file == EE_GRID_TEMPLATE_PLUGIN_FILE ) {
+		if ( $file == EE_GRID_TEMPLATE_BASENAME ) {
 			// before other links
 			array_unshift( $links, '<a href="admin.php?page=espresso_grid_template">' . __('Settings') . '</a>' );
 		}
@@ -89,4 +92,4 @@ Class  EE_Grid_Template extends EE_Addon {
 
 }
 // End of file EE_Grid_Template.class.php
-// Location: wp-content/plugins/espresso-new-addon/EE_Grid_Template.class.php
+// Location: wp-content/plugins/espresso-grid-template/EE_Grid_Template.class.php

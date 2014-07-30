@@ -3,7 +3,31 @@ $temp_month = '';
 if ( have_posts() ) :
 	// allow other stuff
 	do_action( 'AHEE__espresso_grid_template_template__before_loop' );
-	echo '<table class="cal-table-list">';
+	?>
+	<p class="category-filter"><label><?php echo __('Filter by category ', 'event_espresso'); ?></label>
+	<select class="" id="ee_filter_cat">
+	<option class="ee_filter_show_all"><?php echo __('Show All', 'event_espresso'); ?></option>
+	<?php
+	$taxonomy = array('espresso_event_categories');
+	$args = array('orderby'=>'name','hide_empty'=>true);
+	$ee_terms = get_terms($taxonomy, $args);
+	foreach($ee_terms as $term){
+		echo '<option class="' . $term->slug . '">'. $term->name . '</option>';
+	}
+    ?>
+	</select></p>
+
+	<table id="ee_filter_table" class="espresso-table" width="100%">
+	<thead class="espresso-table-header-row">
+		<tr>
+			<th class="th-group"><?php _e('Event','event_espresso'); ?></th>
+			<th class="th-group"><?php _e('Venue','event_espresso'); ?></th>
+			<th class="th-group"><?php _e('Date','event_espresso'); ?></th>
+			<th class="th-group"></th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
 	// Start the Loop.
 	while ( have_posts() ) : the_post();
 		// Include the post TYPE-specific template for the content.
@@ -12,14 +36,28 @@ if ( have_posts() ) :
 		//Debug
 		//d( $post );
 		
-		//Check if external URL
-		$external_url = $post->EE_Event->external_url();
+		//Get the category for this event
+		$event = EEH_Event_View::get_event();
+		if ( $event instanceof EE_Event ) {
+			if ( $event_categories = get_the_terms( $event->ID(), 'espresso_event_categories' )) {
+				// loop thru terms and create links
+				$category_slugs = '';
+				foreach ( $event_categories as $term ) {
+					$category_slugs[] = $term->slug;
+				}
+			}
+		}
+		$category_slugs = implode( ' ', $category_slugs );
 
-		//Create the URL to the event
-		$registration_url = !empty($external_url) ? $post->EE_Event->external_url() : $post->EE_Event->get_permalink();
+		//Create the event link
+		$button_text		= !isset($button_text) ? __('Register', 'event_espresso') : $button_text;
+		$alt_button_text	= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
+		$external_url 		= $post->EE_Event->external_url();
+		$button_text		= !empty($external_url) ? $alt_button_text : $button_text;
+		$registration_url 	= !empty($external_url) ? $post->EE_Event->external_url() : $post->EE_Event->get_permalink();
 		
-		//Create the registrer now button
-		$live_button 		= '<a id="a_register_link-'.$post->ID.'" href="'.$registration_url.'"><img class="buytix_button" src="'.EE_GRID_TEMPLATE_URL . 'images' . DS .'register-now.png" alt="Buy Tickets"></a>';
+		//Create the register now button
+		$live_button 		= '<a id="a_register_link-'.$post->ID.'" href="'.$registration_url.'">'.$button_text.'</a>';
 		
 		//Get the venue for this event
 		$venues = espresso_event_venues();
@@ -36,60 +74,16 @@ if ( have_posts() ) :
 				$state = $venue->state_obj()->name();
 			}
 		}
-
-		 
-			$full_month = date("F", strtotime($post->DTT_EVT_start));
-			if ($temp_month != $full_month){
-				?>
-				<tr class="cal-header-month">
-					<th class="cal-header-month-name" id="calendar-header-<?php echo $full_month; ?>" colspan="3"><?php echo $full_month; ?></th>
-				</tr>
-			<?php 
-			if(isset($table_header ) && $table_header == '1') { ?>
-
-				<tr class="cal-header">
-					<th><?php echo !isset($show_featured) || $show_featured === 'false' ? __('Date','event_espresso') :  '' ?></th>
-					<th class="th-event-info"><?php if(isset($change_title)) { echo $change_title; } else { _e('Band / Artist','event_espresso'); } ?></th>
-					<th class="th-tickets"><?php _e('Tickets','event_espresso'); ?></th>
-				</tr>
-				<?php
-			}
-				$temp_month = $full_month;
-			}
-
-
-		//Start the table
-		echo '<tr class="event-row" id="event-row-'. $post->ID .'">';
-		if(isset($show_featured ) && $show_featured == '1') { ?>
-				<td class="td-fet-image"><div class="">
-					<?php echo $post->EE_Event->feature_image('thumbnail'/*, array('align'=>'left', 'style'=>'margin:10px; border:1px solid #ccc')*/); ?>
-				</div></td>
-		<?php } else { ?>
-			<td class="td-date-holder"><div class="dater">
-					<div class="cal-day-title"><?php echo date("l", strtotime($post->DTT_EVT_start)); ?></div>
-					<div class="cal-day-num"><?php echo date("j", strtotime($post->DTT_EVT_start)); ?></div>
-					<div><span><?php echo date("M", strtotime($post->DTT_EVT_start)); ?></span></div>
-				<?php } ?>
-				</div>
-			</td>
+		?>
+		<tr class="espresso-table-row <?php echo $category_slugs; ?>">
+			<td id="event_title-<?php echo $post->ID; ?>" class="event_title"><?php echo $post->post_title ?></td>
+			<td id="venue_title-<?php echo $post->ID; ?>" class="venue_title"><?php echo (isset($venue_name) && !empty($venue_name)) ? $venue_name : '' ?></td>
+			<td id="start_date-<?php echo $post->ID; ?>" class="start_date"><?php echo date(get_option('date_format'). ' '.get_option('time_format'), strtotime($post->DTT_EVT_start)) ?></td>
+			<td class="td-group reg-col" nowrap="nowrap"><?php echo $live_button; ?></td>
+		</tr>
 		<?php
 
-		echo '<td class="td-event-info"><span class="event-title"><a href="'. $registration_url .'">'.$post->post_title.'</a></span>';
-		echo '<p>';
 
-		//Start date/time
-		echo date(get_option('date_format'). ' '.get_option('time_format'), strtotime($post->DTT_EVT_start)). '<br />';
-		echo (isset($venue_name) && !empty($venue_name)) ? $venue_name : '';
-		echo (isset($venue_city) && !empty($venue_city)) ? ', '.$venue_city :'';
-		echo (isset($state) && !empty($state)) ? ', '.$state : '';
-		echo '</p>';
-		//Event description
-		$event_desc = explode('<!--more-->', $post->post_content);
-		$event_desc = array_shift( $event_desc );
-		echo wpautop($event_desc); 
-		echo '</td>';
-		echo '<td class="td-event-register">'.$live_button.'</td>';
-		echo '</tr>';
 	endwhile;
 	echo '</table>';
 	// allow moar other stuff

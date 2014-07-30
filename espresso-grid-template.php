@@ -2,10 +2,8 @@
 /*
   Plugin Name: Event Espresso - Grid Template
   Plugin URI: http://www.eventespresso.com
-  Description: The Event Espresso Grid Template adds a grid view to Event Espresso 4
-  Requirements: (optional) CSS skills to customize styles
+  Description: The Event Espresso Grid Template adds a events table view to Event Espresso 4
   Shortcode Example: [ESPRESSO_GRID_TEMPLATE]
-  Shortcode Parameters:
   Version: 0.0.1.dev.001
   Author: Event Espresso
   Author URI: http://www.eventespresso.com
@@ -41,7 +39,7 @@
  */
 // grid_template version
 define( 'EE_GRID_TEMPLATE_VERSION', '0.0.1.dev.001' );
-define( 'EE_GRID_TEMPLATE_PLUGIN_FILE', plugin_basename( __FILE__ ));
+define( 'EE_GRID_TEMPLATE_PLUGIN_FILE',  __FILE__ );
 
 function load_espresso_grid_template() {
 	if ( class_exists( 'EE_Addon' )) {
@@ -52,4 +50,4 @@ function load_espresso_grid_template() {
 add_action( 'AHEE__EE_System__load_espresso_addons', 'load_espresso_grid_template' );
 
 // End of file espresso_grid_template.php
-// Location: wp-content/plugins/espresso-new-addon/espresso_grid_template.php
+// Location: wp-content/plugins/espresso-grid-template/espresso_grid_template.php
