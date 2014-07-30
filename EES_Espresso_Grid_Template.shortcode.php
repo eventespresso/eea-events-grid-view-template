@@ -116,16 +116,16 @@ class EES_Espresso_Grid_Template  extends EES_Shortcode {
 		$attributes = array_merge(
 			// defaults
 			array(
-				'title' => NULL,
+				//'title' => NULL,
 				'limit' => 10,
-				'css_class' => NULL,
+				//'css_class' => NULL,
 				'show_expired' => FALSE,
 				'month' => NULL,
 				'category_slug' => NULL,
 				'order_by' => 'start_date',
 				'sort' => 'ASC',
-				'show_featured' => '0',
-				'table_header' => '1'
+				//'show_featured' => '0',
+				//'table_header' => '1'
 			),
 			(array)$attributes
 		);
