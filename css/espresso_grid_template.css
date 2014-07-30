@@ -6,7 +6,63 @@
 /*
 General Styles
 ---------------------------------------------------------------------------------------------------- */
+.ee_grid_box img {
+	width:200px;
+	height:200px;
+}
 
+.ee_grid_box {
+	text-align:center;
+}
+
+.ee_grid_box a {
+	margin:10px;
+	float:left;
+}
+
+.ee_grid_box a.darken {
+    display: inline-block;
+    background: black;
+    padding: 0;
+    position:relative
+}
+
+.ee_grid_box a.darken img {
+    display: block;
+    
+    -webkit-transition: all 0.5s linear;
+       -moz-transition: all 0.5s linear;
+        -ms-transition: all 0.5s linear;
+         -o-transition: all 0.5s linear;
+            transition: all 0.5s linear;
+}
+
+.ee_grid_box a.darken:hover img {
+    opacity: 0.4;           
+}
+.ee_grid_box a.darken span{
+	position:absolute;
+	top:5px;
+	color:#000;
+	left:10px;
+	right:10px;
+	opacity:0;
+}
+
+.ee_grid_box a.darken span h2 {
+	font-size:130%;
+}
+
+.ee_grid_box a.darken:hover span{
+	color:#fff;
+    -webkit-transition: all 0.5s linear;
+       -moz-transition: all 0.5s linear;
+        -ms-transition: all 0.5s linear;
+         -o-transition: all 0.5s linear;
+            transition: all 0.5s linear;
+	opacity:1;
+
+}
 
 
 /* Media Query for screens smaller then 768px (iPad portrait)
