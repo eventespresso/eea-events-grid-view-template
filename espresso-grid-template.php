@@ -2,9 +2,9 @@
 /*
   Plugin Name: Event Espresso - Grid View Template
   Plugin URI: http://www.eventespresso.com
-  Description: The Event Espresso Grid Template adds a events table view to Event Espresso 4
+  Description: The Event Espresso Grid Template adds a events table view to Event Espresso 4. Add [ESPRESSO_GRID_TEMPLATE] to any WordPress page/post.
   Shortcode Example: [ESPRESSO_GRID_TEMPLATE]
-  Default Shortcode Parameters: button_text = "Register Now!", alt_button_text = "View Details", default_image = image URL, limit = 10, show_expired = FALSE, month = NULL, category_slug = NULL, order_by = start_date, sort = ASC
+  Shortcode Parameters: button_text = "Register Now!", alt_button_text = "View Details", default_image = image URL, limit = 10, show_expired = FALSE, month = NULL, category_slug = NULL, order_by = start_date, sort = ASC
   Version: 0.0.1.dev.001
   Author: Event Espresso
   Author URI: http://www.eventespresso.com
