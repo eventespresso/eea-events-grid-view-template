@@ -44,7 +44,7 @@ Class  EE_Grid_Template extends EE_Addon {
 				'shortcode_paths' 	=> array( EE_GRID_TEMPLATE_PATH . 'EES_Espresso_Grid_Template.shortcode.php' ),
 				// if plugin update engine is being used for auto-updates. not needed if PUE is not being used.
 				'pue_options'			=> array(
-					'pue_plugin_slug' => 'events-grid-view-template',
+					'pue_plugin_slug' => 'eea-events-grid-view-template',
 					'plugin_basename' => EE_GRID_TEMPLATE_PLUGIN_FILE,
 					'checkPeriod' => '24',
 					'use_wp_update' => FALSE
