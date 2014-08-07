@@ -1,6 +1,6 @@
 <?php
 /*
-  Plugin Name: Event Espresso - Grid View Template (EE4+)
+  Plugin Name: Event Espresso - Grid View Template (EE4.3+)
   Plugin URI: http://www.eventespresso.com
   Description: The Event Espresso Grid Template adds a events table view to Event Espresso 4. Add [ESPRESSO_GRID_TEMPLATE] to any WordPress page/post.
   Shortcode Example: [ESPRESSO_GRID_TEMPLATE]
