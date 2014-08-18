@@ -36,7 +36,7 @@ Class  EE_Grid_Template extends EE_Addon {
 				'version' 					=> EE_GRID_TEMPLATE_VERSION,
 				'min_core_version' 			=> '4.3.0',
 				'base_path' 				=> EE_GRID_TEMPLATE_PATH,
-				'main_file_path' 			=> EE_GRID_TEMPLATE_PLUGIN_FILE . 'espresso-grid-template.php',
+				'main_file_path' 			=> EE_GRID_TEMPLATE_PATH . 'espresso-grid-template.php',
 				//'admin_callback'		=> 'additional_admin_hooks',
 				'autoloader_paths' 			=> array(
 					'EE_Grid_Template' 	=> EE_GRID_TEMPLATE_PATH . 'EE_Grid_Template.class.php',
