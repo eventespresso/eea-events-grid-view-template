@@ -266,7 +266,7 @@ class EE_Grid_Template_Query extends WP_Query {
 		// first off, let's remove any filters from previous queries
 		remove_filter( 'posts_where', array( $this, 'posts_where' ));
 		// Show Expired ?
-		$this->_show_expired = $this->_show_expired ? TRUE : FALSE;
+		$this->_show_expired = filter_var($this->_show_expired, FILTER_VALIDATE_BOOLEAN);
 
 		if ( method_exists( 'EED_Events_Archive','posts_where_sql_for_show_expired' )) {
 			$SQL .= EED_Events_Archive::posts_where_sql_for_show_expired( $this->_show_expired );//Method for EE 4.3
