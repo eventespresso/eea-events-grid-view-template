@@ -36,7 +36,7 @@ Class  EE_Grid_Template extends EE_Addon {
 				'version' 					=> EE_GRID_TEMPLATE_VERSION,
 				'min_core_version' 			=> '4.3.0',
 				'base_path' 				=> EE_GRID_TEMPLATE_PATH,
-				'main_file_path' 			=> EE_GRID_TEMPLATE_PLUGIN_FILE . 'espresso-grid-template.php',
+				'main_file_path' 			=> EE_GRID_TEMPLATE_PATH . 'espresso-grid-template.php',
 				//'admin_callback'		=> 'additional_admin_hooks',
 				'autoloader_paths' 			=> array(
 					'EE_Grid_Template' 	=> EE_GRID_TEMPLATE_PATH . 'EE_Grid_Template.class.php',
@@ -44,7 +44,7 @@ Class  EE_Grid_Template extends EE_Addon {
 				'shortcode_paths' 	=> array( EE_GRID_TEMPLATE_PATH . 'EES_Espresso_Grid_Template.shortcode.php' ),
 				// if plugin update engine is being used for auto-updates. not needed if PUE is not being used.
 				'pue_options'			=> array(
-					'pue_plugin_slug' => 'espresso_grid_template',
+					'pue_plugin_slug' => 'eea-events-grid-view-template',
 					'plugin_basename' => EE_GRID_TEMPLATE_PLUGIN_FILE,
 					'checkPeriod' => '24',
 					'use_wp_update' => FALSE

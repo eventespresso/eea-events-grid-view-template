@@ -1,4 +1,7 @@
 <?php
+// Options
+$date_option = get_option( 'date_format' );
+$time_option = get_option( 'time_format' );
 $temp_month = '';
 if ( have_posts() ) :
 	// allow other stuff
@@ -51,7 +54,7 @@ if ( have_posts() ) :
 									echo $org_options['currency_symbol'] . $event->event_cost;
 								}*/
 								echo '<br />';
-								echo date(get_option('date_format'). ' '.get_option('time_format'), strtotime($post->DTT_EVT_start));
+								espresso_event_date( $date_option, $time_option );
 								echo '<br /><br />';
 								echo $button_text;
 							
