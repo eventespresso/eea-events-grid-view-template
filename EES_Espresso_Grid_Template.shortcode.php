@@ -268,24 +268,15 @@ class EE_Grid_Template_Query extends WP_Query {
 		// Show Expired ?
 		$this->_show_expired = filter_var($this->_show_expired, FILTER_VALIDATE_BOOLEAN);
 
-		if ( method_exists( 'EED_Events_Archive','posts_where_sql_for_show_expired' )) {
-			$SQL .= EED_Events_Archive::posts_where_sql_for_show_expired( $this->_show_expired );//Method for EE 4.3
-			// Category
-			$SQL .=  EED_Events_Archive::posts_where_sql_for_event_category_slug( $this->_category_slug );
-			// Start Date
-			$SQL .= EED_Events_Archive::posts_where_sql_for_event_list_month( $this->_month );
-		} else {
-			EE_Registry::instance()->load_helper( 'Event_Query' );//Method for EE 4.4
+			EE_Registry::instance()->load_helper( 'Event_Query' );
 			$SQL .= EEH_Event_Query::posts_where_sql_for_show_expired( $this->_show_expired );
 			// Category
 			$SQL .=  EEH_Event_Query::posts_where_sql_for_event_category_slug( $this->_category_slug );
 			// Start Date
 			$SQL .= EEH_Event_Query::posts_where_sql_for_event_list_month( $this->_month );
-		}
 
 		return $SQL;
 	}
-
 
 
 	/**
