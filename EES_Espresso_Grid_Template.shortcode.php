@@ -129,6 +129,10 @@ class EES_Espresso_Grid_Template  extends EES_Shortcode {
 			),
 			(array)$attributes
 		);
+
+		// Show Expired ?
+		$attributes['show_expired'] = filter_var($attributes['show_expired'], FILTER_VALIDATE_BOOLEAN);
+
 		// run the query
 		global $wp_query;
 		$wp_query = new EE_Grid_Template_Query( $attributes );
@@ -257,8 +261,7 @@ class EE_Grid_Template_Query extends WP_Query {
 	public function posts_where( $SQL ) {
 		// first off, let's remove any filters from previous queries
 		remove_filter( 'posts_where', array( $this, 'posts_where' ));
-		// Show Expired ?
-		$this->_show_expired = filter_var($this->_show_expired, FILTER_VALIDATE_BOOLEAN);
+
 		EE_Registry::instance()->load_helper( 'Event_Query' );
 		$SQL .= EEH_Event_Query::posts_where_sql_for_show_expired( $this->_show_expired );
 		// Category
