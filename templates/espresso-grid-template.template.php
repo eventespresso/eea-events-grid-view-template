@@ -1,7 +1,4 @@
 <?php
-// Options
-$date_option = get_option( 'date_format' );
-$time_option = get_option( 'time_format' );
 $temp_month = '';
 if ( have_posts() ) :
 	// allow other stuff
@@ -30,7 +27,12 @@ if ( have_posts() ) :
 		}
 		
 		$image = !empty($feature_image_url) ? $feature_image_url : $default_image;
+
+		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, 1 );
 		
+		foreach ( $datetimes as $datetime ) {
+			$startdat = $datetime->start_date_and_time();
+		}
 		//Debug
 		//d( $post );
 
@@ -47,17 +49,17 @@ if ( have_posts() ) :
 
                             <?php
 							
-								echo $post->post_title.'<br />';
+								echo '<b class="title">' . $post->post_title. '</b><br />';
 								/*if($event->event_cost === "0.00") {
 									echo __('FREE', 'event_espresso');
 								}else {
 									echo $org_options['currency_symbol'] . $event->event_cost;
 								}*/
 								echo '<br />';
-								espresso_event_date( $date_option, $time_option );
+								echo '<b class="start-date">' . $startdat . '</b>';
 								echo '<br /><br />';
-								echo $button_text;
 							
+								echo '<b class="button-text">' . $button_text . '</b>';
 							?>
 
                         </span>

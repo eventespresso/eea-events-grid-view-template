@@ -129,6 +129,10 @@ class EES_Espresso_Grid_Template  extends EES_Shortcode {
 			),
 			(array)$attributes
 		);
+
+		// Show Expired ?
+		$attributes['show_expired'] = filter_var($attributes['show_expired'], FILTER_VALIDATE_BOOLEAN);
+
 		// run the query
 		global $wp_query;
 		$wp_query = new EE_Grid_Template_Query( $attributes );
@@ -236,20 +240,12 @@ class EE_Grid_Template_Query extends WP_Query {
 		remove_filter( 'posts_join', array( $this, 'posts_join' ));
 		// generate the SQL
 		if ( $this->_category_slug !== NULL ) {
-			if ( method_exists( 'EED_Events_Archive','posts_join_sql_for_terms' )) {
-				$SQL .= EED_Events_Archive::posts_join_sql_for_terms( TRUE );//Method for EE 4.3
-			}else{
-				EE_Registry::instance()->load_helper( 'Event_Query' );
-				$SQL .= EEH_Event_Query::posts_join_sql_for_terms( TRUE );
-			}
+			EE_Registry::instance()->load_helper( 'Event_Query' );
+			$SQL .= EEH_Event_Query::posts_join_sql_for_terms( TRUE );
 		}
 		if ( $this->_order_by !== NULL ) {
-			if ( method_exists( 'EED_Events_Archive','posts_join_for_orderby' )) {
-				$SQL .= EED_Events_Archive::posts_join_for_orderby( $this->_order_by );//Method for EE 4.4
-			}else{
-				EE_Registry::instance()->load_helper( 'Event_Query' );
-				$SQL .= EEH_Event_Query::posts_join_for_orderby( $this->_order_by );
-			}
+			EE_Registry::instance()->load_helper( 'Event_Query' );
+			$SQL .= EEH_Event_Query::posts_join_for_orderby( $this->_order_by );
 		}
 		return $SQL;
 	}
@@ -265,27 +261,15 @@ class EE_Grid_Template_Query extends WP_Query {
 	public function posts_where( $SQL ) {
 		// first off, let's remove any filters from previous queries
 		remove_filter( 'posts_where', array( $this, 'posts_where' ));
-		// Show Expired ?
-		$this->_show_expired = filter_var($this->_show_expired, FILTER_VALIDATE_BOOLEAN);
 
-		if ( method_exists( 'EED_Events_Archive','posts_where_sql_for_show_expired' )) {
-			$SQL .= EED_Events_Archive::posts_where_sql_for_show_expired( $this->_show_expired );//Method for EE 4.3
-			// Category
-			$SQL .=  EED_Events_Archive::posts_where_sql_for_event_category_slug( $this->_category_slug );
-			// Start Date
-			$SQL .= EED_Events_Archive::posts_where_sql_for_event_list_month( $this->_month );
-		} else {
-			EE_Registry::instance()->load_helper( 'Event_Query' );//Method for EE 4.4
-			$SQL .= EEH_Event_Query::posts_where_sql_for_show_expired( $this->_show_expired );
-			// Category
-			$SQL .=  EEH_Event_Query::posts_where_sql_for_event_category_slug( $this->_category_slug );
-			// Start Date
-			$SQL .= EEH_Event_Query::posts_where_sql_for_event_list_month( $this->_month );
-		}
-
+		EE_Registry::instance()->load_helper( 'Event_Query' );
+		$SQL .= EEH_Event_Query::posts_where_sql_for_show_expired( $this->_show_expired );
+		// Category
+		$SQL .=  EEH_Event_Query::posts_where_sql_for_event_category_slug( $this->_category_slug );
+		// Start Date
+		$SQL .= EEH_Event_Query::posts_where_sql_for_event_list_month( $this->_month );
 		return $SQL;
 	}
-
 
 
 	/**
@@ -299,12 +283,8 @@ class EE_Grid_Template_Query extends WP_Query {
 		// first off, let's remove any filters from previous queries
 		remove_filter( 'posts_orderby', array( $this, 'posts_orderby' ) );
 		// generate the SQL
-		if ( method_exists( 'EED_Events_Archive','posts_orderby_sql' )) {
-			$SQL = EED_Events_Archive::posts_orderby_sql( $this->_order_by, $this->_sort );//Method for EE 4.3
-		}else{
-			EE_Registry::instance()->load_helper( 'Event_Query' );
-			$SQL = EEH_Event_Query::posts_orderby_sql( $this->_order_by, $this->_sort );//Method for EE 4.4
-		}
+		EE_Registry::instance()->load_helper( 'Event_Query' );
+		$SQL = EEH_Event_Query::posts_orderby_sql( $this->_order_by, $this->_sort );//Method for EE 4.4
 		return $SQL;
 	}
 
