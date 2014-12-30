@@ -1,4 +1,7 @@
 <?php
+// Options
+$date_format = get_option( 'date_format' );
+$time_format = get_option( 'time_format' );
 $temp_month = '';
 if ( have_posts() ) :
 	// allow other stuff
@@ -56,7 +59,7 @@ if ( have_posts() ) :
 									echo $org_options['currency_symbol'] . $event->event_cost;
 								}*/
 								echo '<br />';
-								echo '<b class="start-date">' . $startdat . '</b>';
+								echo '<b class="start-date">' . date_i18n( $date_format . ' ' . $time_format, strtotime( $startdat ) ) . '</b>';
 								echo '<br /><br />';
 							
 								echo '<b class="button-text">' . $button_text . '</b>';
