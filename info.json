@@ -1,0 +1,16 @@
+{
+	"versionFile" : "espresso-grid-template.php",
+	"slug" : "eea-events-grid-view-template",
+	"name" : "EE4 Grid Template",
+	"archiveBaseUrl" : "http://build.eventespresso.com/",
+	"archiveBasePath" : "~/www/build/",
+	"releaseFilesRemove" : [
+		"src/tests/**",
+		"src/info.json",
+		"src/circle.yml",
+		"src/readme.txt"
+	],
+	"github" : false,
+	"awsbucket" : "",
+	"awsregion" : ""
+}
