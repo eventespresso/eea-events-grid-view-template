@@ -34,9 +34,8 @@ if ( have_posts() ) :
 		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, 1 );
 
 		$datetime = end( $datetimes );
-		$startdate = $datetime->get_i18n_datetime( 'DTT_EVT_start', $date_format . ' ' . $time_format );
 
-
+		$startdate = date_i18n( $date_format . ' ' . $time_format, strtotime( $datetime->start_date_and_time('Y-m-d', 'H:i:s') ) );
 		?>
 
 
