@@ -15,7 +15,7 @@ if ( have_posts() ) :
 		global $post;
 
 		//Debug
-		//d( $post );		
+		//d( $post );
 
 		//Create the event link
 		$button_text		= !isset($button_text) ? __('Register Now!', 'event_espresso') : $button_text;
@@ -24,22 +24,18 @@ if ( have_posts() ) :
 		$button_text		= !empty($external_url) ? $alt_button_text : $button_text;
 		$registration_url 	= !empty($external_url) ? $post->EE_Event->external_url() : $post->EE_Event->get_permalink();
 		$feature_image_url	= $post->EE_Event->feature_image_url();
-		
-		if(!isset($default_image) || $default_image == '') { 
+
+		if(!isset($default_image) || $default_image == '') {
 			$default_image = EE_GRID_TEMPLATE_URL .'/images/default.jpg';
 		}
-		
+
 		$image = !empty($feature_image_url) ? $feature_image_url : $default_image;
 
 		$datetimes = EEM_Datetime::instance()->get_datetimes_for_event_ordered_by_start_time( $post->ID, $show_expired, false, 1 );
-		
-		foreach ( $datetimes as $datetime ) {
-			$startdat = $datetime->start_date_and_time();
-		}
-		//Debug
-		//d( $post );
 
-		
+		$datetime = end( $datetimes );
+
+		$startdate = date_i18n( $date_format . ' ' . $time_format, strtotime( $datetime->start_date_and_time('Y-m-d', 'H:i:s') ) );
 		?>
 
 
@@ -51,7 +47,7 @@ if ( have_posts() ) :
                         <span>
 
                             <?php
-							
+
 								echo '<b class="title">' . $post->post_title. '</b><br />';
 								/*if($event->event_cost === "0.00") {
 									echo __('FREE', 'event_espresso');
@@ -59,9 +55,9 @@ if ( have_posts() ) :
 									echo $org_options['currency_symbol'] . $event->event_cost;
 								}*/
 								echo '<br />';
-								echo '<b class="start-date">' . date_i18n( $date_format . ' ' . $time_format, strtotime( $startdat ) ) . '</b>';
+								echo '<b class="start-date">' . $startdate . '</b>';
 								echo '<br /><br />';
-							
+
 								echo '<b class="button-text">' . $button_text . '</b>';
 							?>
 
