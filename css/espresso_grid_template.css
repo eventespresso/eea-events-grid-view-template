@@ -50,7 +50,12 @@ General Styles
 }
 
 .ee_grid_box a.darken span h2 {
-	font-size:130%;
+	font-size: 14px;
+    line-height: 150%;
+}
+
+.ee_grid_box a.darken span h2 strong.title {
+    font-size: 18px;
 }
 
 .ee_grid_box a.darken:hover span{
@@ -63,7 +68,6 @@ General Styles
 	opacity:1;
 
 }
-
 
 /* Media Query for screens smaller then 768px (iPad portrait)
 ---------------------------------------------------------------------------------------------------- */
