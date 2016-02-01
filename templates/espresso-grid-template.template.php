@@ -48,17 +48,18 @@ if ( have_posts() ) :
 
                             <?php
 
-								echo '<b class="title">' . $post->post_title. '</b><br />';
+								echo '<strong class="title">' . $post->post_title. '</strong>';
 								/*if($event->event_cost === "0.00") {
 									echo __('FREE', 'event_espresso');
 								}else {
 									echo $org_options['currency_symbol'] . $event->event_cost;
 								}*/
 								echo '<br />';
-								echo '<b class="start-date">' . $startdate . '</b>';
-								echo '<br /><br />';
-
-								echo '<b class="button-text">' . $button_text . '</b>';
+								echo '<br />';
+								echo '<strong class="start-date">' . $startdate . '</strong>';
+								echo '<br />';
+								echo '<br />';
+								echo '<strong class="button-text">' . $button_text . '</strong>';
 							?>
 
                         </span>
