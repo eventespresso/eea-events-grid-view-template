@@ -40,7 +40,7 @@ if ( have_posts() ) :
 
 
 		<div class="ee_grid_box item">
-                <a id="a_register_link-<?php echo $post->ID; ?>" href="<?php echo $registration_url; ?>" class="darken">
+                <div onclick="" class="darken">
                     <img src="<?php echo $image; ?>" alt="" />
                     <span>
                         <h2>
@@ -48,7 +48,7 @@ if ( have_posts() ) :
 
                             <?php
 
-								echo '<strong class="title">' . $post->post_title. '</strong>';
+								echo '<a class="title" href="' . $registration_url . '"><strong class="title">' . $post->post_title. '</strong></a>';
 								/*if($event->event_cost === "0.00") {
 									echo __('FREE', 'event_espresso');
 								}else {
@@ -59,13 +59,13 @@ if ( have_posts() ) :
 								echo '<strong class="start-date">' . $startdate . '</strong>';
 								echo '<br />';
 								echo '<br />';
-								echo '<strong class="button-text">' . $button_text . '</strong>';
+								echo '<a class="register-link" id="a_register_link-' . $post->ID .'" href="' . $registration_url . '"><strong class="button-text">' . $button_text . '</strong></a>';
 							?>
 
                         </span>
                         </h2>
                     </span>
-                </a>
+                </div>
             </div>
 
 		<?php
