@@ -76,10 +76,63 @@ General Styles
 
 }
 
+/*
+Template v2 Styles
+---------------------------------------------------------------------------------------------------- */
+
+.ee_grid_box_v2 {
+    position: relative;
+    float: left;
+    margin: 2%;
+    overflow: hidden;
+    max-width: 200px;
+}
+
+.ee_grid_box_v2 img {
+    width:200px;
+    height:200px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0; 
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    overflow: hidden;
+    text-align: center;
+    padding: 2% 0;
+    width: 100%; 
+    -moz-transition: top 0.3s, right 0.3s, bottom 0.3s, left 0.3s;
+    -webkit-transition: top 0.3s, right 0.3s, bottom 0.3s, left 0.3s;
+    transition: top 0.3s, right 0.3s, bottom 0.3s, left 0.3s;
+}
+
+.ee_grid_box_v2:hover .overlay {
+    top: 0;
+}
+
+.overlay {
+    top: 100%;
+}
+
+.ee_grid_box_v2 h2,
+.ee_grid_box_v2 .register-link {
+    font-size: 1.2em;
+    line-height: 1.2;
+    margin: 2% 0 10%;
+}
+.ee_grid_box_v2 p {
+    font-size: 1em;;
+}
+
+
 /* Media Query for screens smaller then 768px (iPad portrait)
 ---------------------------------------------------------------------------------------------------- */
 
 @media only screen and (max-width: 767px) {
+  .ee_grid_box_v2 {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 600px) and (min-width: 481px) {
