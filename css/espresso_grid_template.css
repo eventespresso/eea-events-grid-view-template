@@ -80,11 +80,15 @@ Template v2 Styles
 ---------------------------------------------------------------------------------------------------- */
 
 .ee_grid_box_v2 {
-    position: relative;
+    /*color: #fff;*/
     float: left;
+    font-size: 1.5em;
+    font-weight: 700;
+    line-height: 1;
     margin: 2%;
-    overflow: hidden;
     max-width: 200px;
+    overflow: hidden;
+    position: relative;
 }
 
 .ee_grid_box_v2 img {
@@ -120,17 +124,19 @@ Template v2 Styles
     top: 100%;
 }
 
-.espresso-grid .ee_grid_box_v2 h2,
-.espresso-grid .ee_grid_box_v2 .register-link {
-    color: #fff;
-    font-size: 1.5em;
-    font-weight: 700;
-    line-height: 1.2;
+.ee_grid_box_v2 h2 {
     margin: 2% 0 10%;
+    font-size: 0.8em;
 }
+
+.ee_grid_box_v2 .register-link {
+    display: block;
+    font-size: 1em; 
+}
+
 .ee_grid_box_v2 p {
-    font-size: 1em;
-    font-weight: 500;
+    font-size: 0.6em;
+    margin-bottom: 10%;
 }
 
 
