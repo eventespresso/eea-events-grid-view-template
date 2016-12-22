@@ -120,9 +120,11 @@ Template v2 Styles
     top: 100%;
 }
 
-.ee_grid_box_v2 h2,
-.ee_grid_box_v2 .register-link {
-    font-size: 1.2em;
+.espresso-grid .ee_grid_box_v2 h2,
+.espresso-grid .ee_grid_box_v2 .register-link {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: 700;
     line-height: 1.2;
     margin: 2% 0 10%;
 }
