@@ -42,9 +42,9 @@ if ( have_posts() ) :
 		<div class="ee_grid_box_v2 item">
 				<img src="<?php echo $image; ?>" alt="" />
 				<div onclick="" class="darken overlay">
-					<h2><?php echo '<strong class="title">' . $post->post_title. '</strong>'; ?></h2>
-					<p class="start-date"><?php echo '<strong class="start-date">' . $startdate . '</strong>'; ?></p>
-					<p><?php echo '<a class="register-link" id="a_register_link-' . $post->ID .'" href="' . $registration_url . '"><strong class="button-text">' . $button_text . '</strong></a>'; ?></p>
+					<h2 class="event-title title"><?php echo $post->post_title; ?></h2>
+					<p class="start-date"><?php echo $startdate; ?></p>
+					<p><?php echo '<a class="register-link" id="a_register_link-' . $post->ID .'" href="' . $registration_url . '">' . $button_text . '</a>'; ?></p>
 				</div>
 		</div>
 
