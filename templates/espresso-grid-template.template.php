@@ -3,6 +3,9 @@
 $date_format = get_option( 'date_format' );
 $time_format = get_option( 'time_format' );
 $temp_month = '';
+$reg_button_text = !isset($button_text) ? __('Register Now!', 'event_espresso') : $button_text;
+$alt_button_text = !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
+
 if ( have_posts() ) :
 	// allow other stuff
 	do_action( 'AHEE__espresso_grid_template_template__before_loop' );
@@ -18,10 +21,8 @@ if ( have_posts() ) :
 		//d( $post );
 
 		//Create the event link
-		$button_text		= !isset($button_text) ? __('Register Now!', 'event_espresso') : $button_text;
-		$alt_button_text	= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
 		$external_url 		= $post->EE_Event->external_url();
-		$button_text		= !empty($external_url) ? $alt_button_text : $button_text;
+		$button_text		= !empty($external_url) ? $alt_button_text : $reg_button_text;
 		$registration_url 	= !empty($external_url) ? $post->EE_Event->external_url() : $post->EE_Event->get_permalink();
 		$feature_image_url	= $post->EE_Event->feature_image_url();
 
