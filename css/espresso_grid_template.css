@@ -127,6 +127,8 @@ Template v2 Styles
 .ee_grid_box_v2 h2 {
     margin: 2% 0 10%;
     font-size: 0.8em;
+    color: #fff;
+    text-align: center;
 }
 
 .ee_grid_box_v2 .register-link {
@@ -137,6 +139,7 @@ Template v2 Styles
 .ee_grid_box_v2 p {
     font-size: 0.6em;
     margin-bottom: 10%;
+    text-align: center;
 }
 
 
