@@ -73,7 +73,6 @@ General Styles
          -o-transition: all 0.5s linear;
             transition: all 0.5s linear;
 	opacity:1;
-
 }
 
 /*
@@ -105,11 +104,12 @@ Template v2 Styles
     text-align: center;
     padding: 2% 0;
     width: 100%;
-    -webkit-transition: top 0.4s;
-       -moz-transition: top 0.4s;
-        -ms-transition: top 0.4s;
-         -o-transition: top 0.4s;
-            transition: top 0.4s;
+    -webkit-transition: top 0.5s;
+       -moz-transition: top 0.5s;
+        -ms-transition: top 0.5s;
+         -o-transition: top 0.5s;
+            transition: top 0.5s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .ee_grid_box_v2:hover .overlay {
