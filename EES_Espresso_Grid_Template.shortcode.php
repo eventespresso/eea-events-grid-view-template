@@ -135,7 +135,10 @@ class EES_Espresso_Grid_Template extends EES_Shortcode
             ),
             (array)$attributes
         );
-        $attributes = \EES_Shortcode::sanitize_attributes($attributes);
+        $attributes = \EES_Shortcode::sanitize_attributes(
+            $attributes,
+            array('category_slug' => 'sanitize_title_with_dashes')
+        );
         // run the query
         global $wp_query;
         $wp_query = new EE_Grid_Template_Query($attributes);
