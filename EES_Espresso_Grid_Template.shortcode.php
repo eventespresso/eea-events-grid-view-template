@@ -137,7 +137,14 @@ class EES_Espresso_Grid_Template extends EES_Shortcode
         );
         $attributes = \EES_Shortcode::sanitize_attributes(
             $attributes,
-            array('category_slug' => 'sanitize_title_with_dashes')
+            // the following get sanitized/whitelisted in EEH_Event_Query
+            array(
+                'category_slug' => 'skip_sanitization',
+                'show_expired'  => 'skip_sanitization',
+                'order_by'      => 'skip_sanitization',
+                'month'         => 'skip_sanitization',
+                'sort'          => 'skip_sanitization',
+            )
         );
         // run the query
         global $wp_query;
