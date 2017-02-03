@@ -135,17 +135,19 @@ class EES_Espresso_Grid_Template extends EES_Shortcode
             ),
             (array)$attributes
         );
-        $attributes = \EES_Shortcode::sanitize_attributes(
-            $attributes,
-            // the following get sanitized/whitelisted in EEH_Event_Query
-            array(
-                'category_slug' => 'skip_sanitization',
-                'show_expired'  => 'skip_sanitization',
-                'order_by'      => 'skip_sanitization',
-                'month'         => 'skip_sanitization',
-                'sort'          => 'skip_sanitization',
-            )
+        // the following get sanitized/whitelisted in EEH_Event_Query
+        $custom_sanitization = array(
+            'category_slug' => 'skip_sanitization',
+            'show_expired'  => 'skip_sanitization',
+            'order_by'      => 'skip_sanitization',
+            'month'         => 'skip_sanitization',
+            'sort'          => 'skip_sanitization',
         );
+        if (method_exists('\EES_Shortcode', 'sanitize_attributes')) {
+            $attributes = \EES_Shortcode::sanitize_attributes($attributes, $custom_sanitization);
+        } else {
+            $attributes = $this->sanitize_the_attributes($attributes, $custom_sanitization);
+        }
         // run the query
         global $wp_query;
         $wp_query = new EE_Grid_Template_Query($attributes);
@@ -176,6 +178,56 @@ class EES_Espresso_Grid_Template extends EES_Shortcode
         $template_folder_paths[] = EE_GRID_TEMPLATE_TEMPLATES;
         return $template_folder_paths;
     }
+
+
+
+    /**
+     * temporary copy of \EES_Shortcode::sanitize_attributes()
+     * for backwards compatibility sake
+     *
+     * @param array $attributes
+     * @param array $custom_sanitization
+     * @return array
+     */
+    private function sanitize_the_attributes(array $attributes, $custom_sanitization = array())
+    {
+        foreach ($attributes as $key => $value) {
+            // is a custom sanitization callback specified ?
+            if (isset($custom_sanitization[$key])) {
+                $callback = $custom_sanitization[$key];
+                if ($callback === 'skip_sanitization') {
+                    $attributes[$key] = $value;
+                    continue;
+                } else if (function_exists($callback)) {
+                    $attributes[$key] = $callback($value);
+                    continue;
+                }
+            }
+            switch (true) {
+                case $value === null :
+                case is_int($value) :
+                case is_float($value) :
+                    // typical booleans
+                case in_array($value, array(true, 'true', '1', 'on', 'yes', false, 'false', '0', 'off', 'no'), true) :
+                    $attributes[$key] = $value;
+                    break;
+                case is_string($value) :
+                    $attributes[$key] = sanitize_text_field($value);
+                    break;
+                case is_array($value) :
+                    $attributes[$key] = $this->sanitize_the_attributes($attributes);
+                    break;
+                default :
+                    // only remaining data types are Object and Resource
+                    // which are not allowed as shortcode attributes
+                    $attributes[$key] = null;
+                    break;
+            }
+        }
+        return $attributes;
+    }
+
+
 
 }
 
