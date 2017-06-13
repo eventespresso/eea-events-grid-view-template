@@ -81,9 +81,9 @@ Template v2 Styles
 
 .ee_grid_box_v2 {
     float: left;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.5em;
     margin: 2%;
     max-width: 200px;
     overflow: hidden;
@@ -124,9 +124,7 @@ Template v2 Styles
 }
 
 .ee_grid_box_v2 .event-title {
-    margin: 2% 0 10%;
-    font-size: 0.875em;
-    line-height: 1.4em;
+    margin: 10px;
     color: #fff;
     text-align: center;
 }
@@ -137,19 +135,12 @@ Template v2 Styles
 }
 
 .ee_grid_box_v2 p {
-    font-size: 0.6em;
-    line-height: 1em;
-    margin-top: 10px;
-    margin-bottom: 10%;
+    margin: 10px;
     text-align: center;
 }
 
-.ee_grid_box_v2 .event-link {
-    font-size: 0.875em;
-}
-
 .ee_grid_box_v2 .event-link a {
-    padding-bottom: 10px;
+    padding: 10px;
 }
 
 
