@@ -80,7 +80,6 @@ Template v2 Styles
 ---------------------------------------------------------------------------------------------------- */
 
 .ee_grid_box_v2 {
-    /*color: #fff;*/
     float: left;
     font-size: 1.5em;
     font-weight: 700;
@@ -96,7 +95,7 @@ Template v2 Styles
     height: 200px;
 }
 
-.overlay {
+.ee_overlay {
     position: absolute;
     top: 0;
     right: 0; 
@@ -116,17 +115,18 @@ Template v2 Styles
     transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.ee_grid_box_v2:hover .overlay {
+.ee_grid_box_v2:hover .ee_overlay {
     top: 0;
 }
 
-.overlay {
+.ee_overlay {
     top: 100%;
 }
 
-.ee_grid_box_v2 h2 {
+.ee_grid_box_v2 .event-title {
     margin: 2% 0 10%;
-    font-size: 0.8em;
+    font-size: 0.875em;
+    line-height: 1.4em;
     color: #fff;
     text-align: center;
 }
@@ -138,8 +138,18 @@ Template v2 Styles
 
 .ee_grid_box_v2 p {
     font-size: 0.6em;
+    line-height: 1em;
+    margin-top: 10px;
     margin-bottom: 10%;
     text-align: center;
+}
+
+.ee_grid_box_v2 .event-link {
+    font-size: 0.875em;
+}
+
+.ee_grid_box_v2 .event-link a {
+    padding-bottom: 10px;
 }
 
 
