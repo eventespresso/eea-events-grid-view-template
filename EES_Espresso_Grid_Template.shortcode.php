@@ -122,6 +122,7 @@ class EES_Espresso_Grid_Template extends EES_Shortcode
         $attributes = array_merge(
         // defaults
             array(
+                'template_file' => 'espresso-grid-template.template.php', //Default template file
                 //'title' => NULL,
                 'limit'         => 10,
                 //'css_class' => NULL,
@@ -157,7 +158,7 @@ class EES_Espresso_Grid_Template extends EES_Shortcode
             array($this, 'template_folder_paths')
         );
         // load our template
-        $grid_template = EEH_Template::locate_template('espresso-grid-template.template.php', $attributes);
+        $grid_template = EEH_Template::locate_template($attributes['template_file'], $attributes);
         // now reset the query and postdata
         wp_reset_query();
         wp_reset_postdata();
