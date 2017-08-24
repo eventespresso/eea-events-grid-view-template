@@ -3,6 +3,9 @@
 $date_format = get_option( 'date_format' );
 $time_format = get_option( 'time_format' );
 $temp_month = '';
+$reg_button_text = !isset($button_text) ? __('Register Now!', 'event_espresso') : $button_text;
+$alt_button_text = !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
+
 if ( have_posts() ) :
 	// allow other stuff
 	do_action( 'AHEE__espresso_grid_template_template__before_loop' );
@@ -18,10 +21,8 @@ if ( have_posts() ) :
 		//d( $post );
 
 		//Create the event link
-		$button_text		= !isset($button_text) ? __('Register Now!', 'event_espresso') : $button_text;
-		$alt_button_text	= !isset($alt_button_text) ? __('View Details', 'event_espresso') : $alt_button_text;//For alternate registration pages
 		$external_url 		= $post->EE_Event->external_url();
-		$button_text		= !empty($external_url) ? $alt_button_text : $button_text;
+		$button_text		= !empty($external_url) ? $alt_button_text : $reg_button_text;
 		$registration_url 	= !empty($external_url) ? $post->EE_Event->external_url() : $post->EE_Event->get_permalink();
 		$feature_image_url	= $post->EE_Event->feature_image_url();
 
@@ -40,34 +41,14 @@ if ( have_posts() ) :
 		?>
 
 
-		<div class="ee_grid_box item">
-                <a id="a_register_link-<?php echo $post->ID; ?>" href="<?php echo $registration_url; ?>" class="darken">
-                    <img src="<?php echo $image; ?>" alt="" />
-                    <span>
-                        <h2>
-                        <span>
-
-                            <?php
-
-								echo '<strong class="title">' . $post->post_title. '</strong>';
-								/*if($event->event_cost === "0.00") {
-									echo __('FREE', 'event_espresso');
-								}else {
-									echo $org_options['currency_symbol'] . $event->event_cost;
-								}*/
-								echo '<br />';
-								echo '<br />';
-								echo '<strong class="start-date">' . $startdate . '</strong>';
-								echo '<br />';
-								echo '<br />';
-								echo '<strong class="button-text">' . $button_text . '</strong>';
-							?>
-
-                        </span>
-                        </h2>
-                    </span>
-                </a>
-            </div>
+		<div class="ee_grid_box_v2 item">
+				<img src="<?php echo $image; ?>" alt="" />
+				<div onclick="" class="darken ee_overlay">
+					<p class="event-link"><?php echo '<a class="register-link button" id="a_register_link-' . $post->ID .'" href="' . $registration_url . '">' . $button_text . '</a>'; ?></p>
+					<div class="event-title title"><?php echo $post->post_title; ?></div>
+					<p class="start-date"><?php echo $startdate; ?></p>
+				</div>
+		</div>
 
 		<?php
         }
