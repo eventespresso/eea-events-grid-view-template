@@ -1,1 +1,20 @@
-{"versionFile":"espresso-grid-template.php","slug":"eea-events-grid-view-template","name":"EE4 Grid Template","archiveBaseUrl":"http:\/\/build.eventespresso.com\/","archiveBasePath":"~\/www\/build\/","releaseFilesRemove":["src\/tests\/**","src\/info.json","src\/circle.yml","src\/readme.txt"],"github":false,"demoee":true,"awsbucket":"","awsregion":"","srcBuildFolderName":"eea-grid-template","textDomain":"event_espresso","wpOrgRelease":"1.2.4.p"}
+{
+  "versionFile": "espresso-grid-template.php",
+  "slug": "eea-events-grid-view-template",
+  "name": "EE4 Grid Template",
+  "releaseFilesRemove": [
+    "src\/tests\/**",
+    "src\/info.json",
+    "src\/circle.yml",
+    "src\/readme.txt"
+  ],
+  "github": false,
+  "awsbucket": "",
+  "awsregion": "",
+  "srcBuildFolderName": "eea-grid-template",
+  "textDomain": "event_espresso",
+  "wpOrgRelease": "1.2.4.p",
+  "remoteNamesToPushTo": [
+    "demoee"
+  ]
+}
