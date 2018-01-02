@@ -5,7 +5,7 @@
   Description: Events Grid View Template is an add-on for Event Espresso that will allow you to show your events in a grid layout. Add the [ESPRESSO_GRID_TEMPLATE] shortcode to a WordPress post or page.
   Shortcode Example: [ESPRESSO_GRID_TEMPLATE]
   Shortcode Parameters: button_text = "Register Now!", alt_button_text = "View Details", default_image = image URL, limit = 10, show_expired = FALSE, month = NULL, category_slug = NULL, order_by = start_date, sort = ASC
-  Version: 1.2.5.rc.001
+  Version: 1.2.5.rc.002
   Author: Event Espresso
   Author URI: https://eventespresso.com
   Copyright 2014 Event Espresso (email : support@eventespresso.com)
@@ -39,7 +39,7 @@
  * ------------------------------------------------------------------------
  */
 // grid_template version
-define( 'EE_GRID_TEMPLATE_VERSION', '1.2.5.rc.001' );
+define( 'EE_GRID_TEMPLATE_VERSION', '1.2.5.rc.002' );
 define( 'EE_GRID_TEMPLATE_PLUGIN_FILE',  plugin_basename( __FILE__ ) );
 
 function load_espresso_grid_template() {
