@@ -11,7 +11,7 @@ define( 'EE_GRID_TEMPLATE_TEMPLATES', EE_GRID_TEMPLATE_PATH . DS . 'templates' )
  * @package			Event Espresso
  * @subpackage		espresso-grid-template
  * @ author				Seth Shoultes
- * @ version		 	$VID:$
+ *
  */
 Class  EE_Grid_Template extends EE_Addon {
 

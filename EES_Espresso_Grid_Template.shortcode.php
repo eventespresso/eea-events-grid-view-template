@@ -10,7 +10,7 @@
  * @package            Event Espresso
  * @subpackage         espresso-grid-template
  *                     @ author                Seth Shoultes
- *                     @ version            $VID:$
+ *                     
  */
 class EES_Espresso_Grid_Template extends EES_Shortcode
 {
