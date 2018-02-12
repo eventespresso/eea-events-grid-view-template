@@ -27,7 +27,7 @@ if ( have_posts() ) :
 		$feature_image_url	= $post->EE_Event->feature_image_url();
 
 		if(!isset($default_image) || $default_image == '') {
-			$default_image = EE_GRID_TEMPLATE_URL .'/images/default.jpg';
+			$default_image = EE_GRID_TEMPLATE_URL .'images/default.jpg';
 		}
 
 		$image = !empty($feature_image_url) ? $feature_image_url : $default_image;
