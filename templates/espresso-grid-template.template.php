@@ -47,7 +47,11 @@ if ( have_posts() ) :
 				<div onclick="" class="darken ee_overlay">
 					<p class="event-link"><?php echo '<a class="register-link button" id="a_register_link-' . $post->ID .'" href="' . $registration_url . '">' . $button_text . '</a>'; ?></p>
 					<div class="event-title title"><?php echo $post->post_title; ?></div>
-					<p class="start-date"><?php echo $startdate; ?></p>
+						<p class="start-date">
+							<span class="event-start-date"><?php echo $start_date; ?></span>
+							&nbsp;
+							<span class="event-start-time"><?php echo $start_time; ?></span>
+						</p>
 				</div>
 		</div>
 
