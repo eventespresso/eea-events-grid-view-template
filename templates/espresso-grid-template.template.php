@@ -37,7 +37,8 @@ if ( have_posts() ) :
 		$datetime = end( $datetimes );
         if ($datetime instanceof EE_Datetime) {
 
-		$startdate = date_i18n( $date_format . ' ' . $time_format, strtotime( $datetime->start_date_and_time('Y-m-d', 'H:i:s') ) );
+			$start_date = date_i18n( $date_format, strtotime( $datetime->start_date('Y-m-d') ) );
+			$start_time = date_i18n( $time_format, strtotime( $datetime->start_time('H:i:s') ) );
 		?>
 
 
