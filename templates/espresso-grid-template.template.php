@@ -42,6 +42,7 @@ if ( have_posts() ) :
 		?>
 
 			<div id="event-id-<?php echo $post->ID; ?>" class="ee_grid_box_v2 item">
+				<?php do_action( 'AHEE__espresso_grid_template_template__grid_item_start', $post ); ?>
 					<img src="<?php echo $image; ?>" alt="<?php echo sprintf( esc_attr__( '%s Feature Image', 'event_espresso'), $post->post_title ); ?>" />
 					<div onclick="" class="darken ee_overlay">
 						<p class="event-link"><?php echo '<a class="register-link button" id="a_register_link-' . $post->ID .'" href="' . $registration_url . '">' . $button_text . '</a>'; ?></p>
@@ -52,6 +53,7 @@ if ( have_posts() ) :
 							<span class="event-start-time"><?php echo $start_time; ?></span>
 						</p>
 					</div>
+				<?php do_action( 'AHEE__espresso_grid_template_template__grid_item_end', $post ); ?>
 			</div>
 
 		<?php
