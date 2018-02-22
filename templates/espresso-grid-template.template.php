@@ -27,7 +27,7 @@ if ( have_posts() ) :
 		$feature_image_url	= $post->EE_Event->feature_image_url();
 
 		if(!isset($default_image) || $default_image == '') {
-			$default_image = EE_GRID_TEMPLATE_URL .'/images/default.jpg';
+			$default_image = EE_GRID_TEMPLATE_URL .'images/default.jpg';
 		}
 
 		$image = !empty($feature_image_url) ? $feature_image_url : $default_image;
@@ -37,18 +37,24 @@ if ( have_posts() ) :
 		$datetime = end( $datetimes );
         if ($datetime instanceof EE_Datetime) {
 
-		$startdate = date_i18n( $date_format . ' ' . $time_format, strtotime( $datetime->start_date_and_time('Y-m-d', 'H:i:s') ) );
+			$start_date = date_i18n( $date_format, strtotime( $datetime->start_date('Y-m-d') ) );
+			$start_time = date_i18n( $time_format, strtotime( $datetime->start_time('H:i:s') ) );
 		?>
 
-
-		<div class="ee_grid_box_v2 item">
-				<img src="<?php echo $image; ?>" alt="" />
-				<div onclick="" class="darken ee_overlay">
-					<p class="event-link"><?php echo '<a class="register-link button" id="a_register_link-' . $post->ID .'" href="' . $registration_url . '">' . $button_text . '</a>'; ?></p>
-					<div class="event-title title"><?php echo $post->post_title; ?></div>
-					<p class="start-date"><?php echo $startdate; ?></p>
-				</div>
-		</div>
+			<div id="event-id-<?php echo $post->ID; ?>" class="ee_grid_box_v2 item">
+				<?php do_action( 'AHEE__espresso_grid_template_template__grid_item_start', $post ); ?>
+					<img src="<?php echo $image; ?>" alt="<?php echo sprintf( esc_attr__( '%s Feature Image', 'event_espresso'), $post->post_title ); ?>" />
+					<div onclick="" class="darken ee_overlay">
+						<p class="event-link"><?php echo '<a class="register-link button" id="a_register_link-' . $post->ID .'" href="' . $registration_url . '">' . $button_text . '</a>'; ?></p>
+						<div class="event-title title"><?php echo $post->post_title; ?></div>
+						<p class="start-date">
+							<span class="event-start-date"><?php echo $start_date; ?></span>
+							&nbsp;
+							<span class="event-start-time"><?php echo $start_time; ?></span>
+						</p>
+					</div>
+				<?php do_action( 'AHEE__espresso_grid_template_template__grid_item_end', $post ); ?>
+			</div>
 
 		<?php
         }
