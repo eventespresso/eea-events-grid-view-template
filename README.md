@@ -4,7 +4,7 @@ EE4 Grid Template
 [![Latest Release](https://img.shields.io/github/tag/eventespresso/eea-events-grid-view-template.svg?style=flat&label=Latest%20Release)](https://github.com/eventespresso/eea-events-grid-view-template/releases)
 [![License](https://img.shields.io/badge/License-GPLv2-blue.svg?style=flat)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![Event Espresso Addon](https://img.shields.io/badge/Addon%20For-Event%20Espresso-blue.svg)](https://github.com/eventespresso/event-espresso-core)
-[![Minimum EE Core Version:](https://img.shields.io/badge/Minimum%20EE%20core%20ver-4.9.46.p-red.svg)](https://github.com/eventespresso/event-espresso-core/releases/tag/4.9.46.p)
+[![Minimum EE Core Version:](https://img.shields.io/badge/Minimum%20EE%20core%20ver-4.4.9.p-red.svg)](https://github.com/eventespresso/event-espresso-core/releases/tag/4.4.9.p)
 
 Displays events in a pure CSS grid like structure, using the featured image.
 
